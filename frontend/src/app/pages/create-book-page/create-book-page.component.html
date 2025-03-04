@@ -1,0 +1,21 @@
+<h1>Formulaire de Livre</h1>
+<form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="author">Nom de l'auteur :</label>
+        <input type="text" id="author" name="author" required minlength="5" maxlength="50" formControlName="author">
+    </div>
+
+    <div>
+        <label for="title">Nom du livre :</label>
+        <input type="text" id="title" name="title" required minlength="2" maxlength="35" formControlName="title">
+    </div>
+
+    <div>
+        <label for="description">Description :</label>
+        <textarea id="description" name="description" rows="4" required minlength="10" maxlength="255" formControlName="description"></textarea>
+    </div>
+
+    <div>
+        <input type="submit" value="Soumettre" [disabled]="bookForm.invalid">
+    </div>
+</form>
