@@ -1,0 +1,24 @@
+<div class="voyage-list">
+
+    <div *ngFor="let voyage of paginatedVoyages" class="voyage-item">
+  
+      <h3>{{ voyage.destination }}</h3>
+  
+      <p>{{ voyage.description }}</p>
+  
+      <p>Prix: {{ voyage.prix }} €</p>
+  
+    </div>
+  
+  
+    <div class="pagination">
+  
+      <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Précédent</button>
+  
+      <span>Page {{ currentPage }} sur {{ totalPages() }}</span>
+  
+      <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages()">Suivant</button>
+  
+    </div>
+  
+  </div>
