@@ -1,58 +1,41 @@
-import { Component } from '@angular/core';
-import { DESTINATIONS, DESCRIPTIONS, PRIX } from '../data'
+import { Component, OnInit} from '@angular/core';
+import { TravelsService, Travel } from '../voyage.services'
+import { VoyageItemComponent } from './voyage-item/voyage-item.component';
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [],
+  imports: [VoyageItemComponent],
   templateUrl: './home-page.component.html',
-  styleUrl: './home-page.component.css'
+  styleUrl: './home-page.component.css',
 })
-export class HomePageComponent {
-  destinations = DESTINATIONS;
-
-  descriptions = DESCRIPTIONS;
-
-  prix = PRIX;
-
-
+export class HomePageComponent implements OnInit {
+  travels: Travel[] = [];
+  paginatedVoyages: Travel[] = [];
   currentPage = 1;
-
   itemsPerPage = 20;
 
+  constructor(private travelsService: TravelsService) {}
 
-  get paginatedVoyages() {
+  ngOnInit() {
+    this.travels = this.travelsService.getTravels();
+    this.updatePaginatedVoyages();
+  }
 
+  updatePaginatedVoyages() {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-
     const endIndex = startIndex + this.itemsPerPage;
-
-    return this.destinations.slice(startIndex, endIndex).map((destination, index) => ({
-
-      destination,
-
-      description: this.descriptions[startIndex + index],
-
-      prix: this.prix[startIndex + index]
-
-    }));
-
+    this.paginatedVoyages = this.travels.slice(startIndex, endIndex);
   }
 
-
-  totalPages() {
-
-    return Math.ceil(this.destinations.length / this.itemsPerPage);
-
+  totalPages(): number {
+    return Math.ceil(this.travels.length / this.itemsPerPage);
   }
-
 
   changePage(page: number) {
-
+  
     if (page >= 1 && page <= this.totalPages()) {
-
       this.currentPage = page;
-
+      this.updatePaginatedVoyages();
     }
-
   }
 }

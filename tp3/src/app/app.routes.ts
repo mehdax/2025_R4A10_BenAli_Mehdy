@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { GenerateVoyageComponent } from './generate-voyage/generate-voyage.component';
 
 export const routes: Routes = [
     {
@@ -19,5 +20,6 @@ export const routes: Routes = [
         path: '**',
         redirectTo: '404',
       },
+  
 
 ];

@@ -4,12 +4,13 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomePageComponent } from './home-page/home-page.component'
 import { NotFoundPageComponent} from './not-found-page/not-found-page.component'
+import { GenerateVoyageComponent } from './generate-voyage/generate-voyage.component';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,HeaderComponent,FooterComponent,HomePageComponent,NotFoundPageComponent],
+  imports: [RouterOutlet,HeaderComponent,FooterComponent,HomePageComponent,NotFoundPageComponent,GenerateVoyageComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
